@@ -1,0 +1,59 @@
+# Customer Segmentation Analysis Configuration
+
+# Data configuration
+data:
+  synthetic:
+    n_customers: 1000
+    n_features: 5
+    random_seed: 42
+    noise_level: 0.1
+  
+  features:
+    - age
+    - annual_income
+    - spending_score
+    - purchase_frequency
+    - avg_order_value
+
+# Model configuration
+models:
+  kmeans:
+    n_clusters: 5
+    random_state: 42
+    max_iter: 300
+    n_init: 10
+  
+  gmm:
+    n_components: 5
+    random_state: 42
+    max_iter: 100
+  
+  hdbscan:
+    min_cluster_size: 20
+    min_samples: 10
+    metric: euclidean
+
+# Evaluation configuration
+evaluation:
+  metrics:
+    - silhouette_score
+    - calinski_harabasz_score
+    - davies_bouldin_score
+  
+  business_metrics:
+    - cluster_size_distribution
+    - revenue_per_cluster
+    - customer_lifetime_value
+
+# Visualization configuration
+visualization:
+  figure_size: [12, 8]
+  dpi: 300
+  style: seaborn-v0_8
+  color_palette: viridis
+
+# Demo configuration
+demo:
+  port: 8501
+  host: localhost
+  debug: false
